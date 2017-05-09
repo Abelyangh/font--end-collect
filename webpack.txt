@@ -1,1 +1,78 @@
+reference docs :
 
+http://www.css88.com/doc/webpack2/concepts/output/
+
+1. install webpack . 
+step1: // need to install global webpack node_modules in npm. 
+mac :  sudo npm install webpack -g 
+step2: 
+// add webpack into your project node_modules. and config webpack in package.json file.
+npm install webpack --save-dev
+
+step3: 
+// install webpack loader, eg babel-loader. 
+npm install babel-loader babel-preset-es2015 babel-preset-react --save-dev
+
+step4 
+add webpack.config.js.
+
+
+
+Webpack.config.js 
+
+1. entry point. 
+  # single entry
+  const config = {
+    entry: './app/main.js'
+  } 
+  # multiple entries
+  const config = {
+    entry: {
+      app: './src/app.js'
+      vendors: './src/vendors.js'
+    }
+  }
+ 2. output
+  const config = {
+   entry: {
+      app: './src/app.js'
+      vendors: './src/vendors.js'
+    },
+   output: {
+      fileName: 'bundle.js',
+      path: __dirName + 'build'
+   } 
+  }
+
+modules.exports = config;
+
+3. loader :
+
+npm install --save-dev css-loader
+npm install --save-dev ts-loader 
+
+module.exports = {
+  module: {
+    rules: [
+      {test: /\.css$/, use: ['css-loader'](/loaders/css-loader)},
+      {test: /\.ts$/, use: ['ts-loader'](https://github.com/TypeStrong/ts-loader)}
+    ]
+  }
+};
+
+module: {
+    rules: [
+      {
+        test: /\.css$/,
+        use: [
+          { loader: 'style-loader'},
+          {
+            loader: 'css-loader',
+            options: {
+              modules: true
+            }
+          }
+        ]
+      }
+    ]
+  }
